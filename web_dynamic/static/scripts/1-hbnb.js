@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const selectedAmenities = {};
+  let selectedAmenities = {};
 
   // Listen for changes on amenity checkboxes
   $('input[type="checkbox"][data-id]').change(function () {
@@ -17,7 +17,7 @@ $(document).ready(function () {
   });
 
   function updateAmenitiesList() {
-    const amenitiesArray = Object.values(selectedAmenities);
+    let amenitiesArray = Object.values(selectedAmenities);
     const amenitiesList = amenitiesArray.join(', ');
 
     $('.amenities h4').text(amenitiesList);
