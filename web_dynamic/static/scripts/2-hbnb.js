@@ -3,12 +3,12 @@ $(document).ready(function () {
 
   $('input[type="checkbox"]').change(function () {
     const amenityId = $(this).closest('li').data('id');
-    const amenitName = $(this).closest('li').data('name');
+    const amenityName = $(this).closest('li').data('name');
 
     if (this.checked) {
       selectedAmenities[amenityId] = amenityName;
     } else {
-      delete slectedAmenities[amenityId];
+      delete selectedAmenities[amenityId]; // Corrected the variable name here
     }
 
     const amenitiesList = Object.values(selectedAmenities).join(', ');
