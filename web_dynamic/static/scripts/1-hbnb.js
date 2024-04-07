@@ -1,17 +1,12 @@
 $(document).ready(function () {
   const selectedAmenities = {};
 
-  $('input[type="checkbox"]').change(function () {
-    const amenityId = $(this).closest('li').data('id');
-    const amenitName = $(this).closest('li').data('name');
-
+  $('li input[type="checkbox"]').change(function () {
     if (this.checked) {
-      selectedAmenities[amenityId] = amenityName;
+	    selectedAmenities[this.dataset.name] = this.dataset.id;
     } else {
-      delete slectedAmenities[amenityId];
+	    delete slectedAmenities[this.dataset.name];
     }
-
-    const amenitiesList = Object.values(selectedAmenities).join(', ');
-    $('.amenities h4').text(amenitiesList);
+    $('.amenities h4').text(Object.keys(selectedAmenities).sort().join(", "));
   });
 });
