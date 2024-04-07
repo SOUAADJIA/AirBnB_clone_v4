@@ -1,26 +1,12 @@
 $(document).ready(function () {
-  let selectedAmenities = {};
+  const selectedAmenities = {};
 
-  // Listen for changes on amenity checkboxes
-  $('input[type="checkbox"][data-id]').change(function () {
-    const amenityId = $(this).data('id');
-    const amenityName = $(this).data('name');
-
-    if ($(this).is(':checked')) {
-      selectedAmenities[amenityId] = amenityName;
+  $('li input[type="checkbox"]').change(function () {
+    if (this.checked) {
+	    selectedAmenities[this.dataset.name] = this.dataset.id;
     } else {
-      delete selectedAmenities[amenityId];
+	    delete slectedAmenities[this.dataset.name];
     }
-
-    // Update the h4 tag with the list of selected amenities
-    updateAmenitiesList();
+    $('.amenities h4').text(Object.keys(selectedAmenities).sort().join(", "));
   });
-
-  function updateAmenitiesList() {
-    let amenitiesArray = Object.values(selectedAmenities);
-    const amenitiesList = amenitiesArray.join(', ');
-
-    $('.amenities h4').text(amenitiesList);
-  }
 });
-
